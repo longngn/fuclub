@@ -83,4 +83,4 @@ const checkToken = async () => {
     }
 }
 
-checkToken()
+if (process.env.NODE_ENV !== 'development') checkToken()

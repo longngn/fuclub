@@ -1,10 +1,45 @@
 import React from 'react'
+import FirstTimeGroupSelector from './FirstTimeGroupSelector'
+import MainScreen from './MainScreen'
+import Loading from '../components/Loading'
 import styles from './App.css'
+import * as db from '../services/db'
+import * as graph from '../services/graph'
 
-const App = ({ uid, accessToken }) => (
-    <div className={styles.container}>
-        {uid}<br/>
-        {accessToken}
-    </div>
-)
-export default App
+export default class App extends React.Component {
+    state = {
+        user: null,
+        loading: true
+    }
+    constructor(props) {
+        super(props)
+        this.onFirstTimeSelect = this.onFirstTimeSelect.bind(this)
+    }
+    async componentDidMount() {
+        const { uid } = this.props
+        const user = await db.getUser(uid)
+        if (user) this.setState({ user })
+        this.setState({ loading: false })
+    }
+    async onFirstTimeSelect(groups) {
+        const { accessToken, uid } = this.props
+        const user = await graph.getUser(accessToken, uid)
+        user.groups = groups
+        this.setState({ user })
+        db.updateUser(user)
+    }
+    render() {
+        const { user, loading } = this.state
+        return (
+            <div className={styles.container}>
+                {loading? <Loading /> :
+                    user? <MainScreen groups={user.groups} /> :
+                    <FirstTimeGroupSelector 
+                        accessToken={this.props.accessToken}
+                        onSelect={this.onFirstTimeSelect} 
+                    />
+                }
+            </div>
+        )
+    }
+}

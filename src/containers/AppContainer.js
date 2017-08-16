@@ -35,8 +35,10 @@ export default class AppContainer extends React.Component {
     }
     render() {
         const state = this.state
-        return state.uid? 
+        return (
+            (state.uid && state.accessToken)? 
             <App uid={state.uid} accessToken={state.accessToken} /> :
             null
+        )
     }
 }
