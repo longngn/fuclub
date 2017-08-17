@@ -29,11 +29,12 @@ export default class App extends React.Component {
         db.updateUser(user)
     }
     render() {
+        const { accessToken } = this.props
         const { user, loading } = this.state
         return (
             <div className={styles.container}>
                 {loading? <Loading /> :
-                    user? <MainScreen groups={user.groups} /> :
+                    user? <MainScreen groupIds={user.groups} accessToken={accessToken}/> :
                     <FirstTimeGroupSelector 
                         accessToken={this.props.accessToken}
                         onSelect={this.onFirstTimeSelect} 

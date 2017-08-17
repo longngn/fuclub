@@ -16,7 +16,7 @@ export default class FirstTimeGroupSelector extends React.Component {
     }
     async componentDidMount() {
         const { accessToken } = this.props
-        const groups = await graph.getGroups(accessToken)
+        const groups = await graph.getGroupsOfUser(accessToken)
         this.setState({ groups })
     }
     onSelectGroup(id) {

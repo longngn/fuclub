@@ -7,19 +7,30 @@ const graph = async (token, resource, params = {}, method = 'GET') => {
     })
     const response = await fetch(url, { method })
     const json = await response.json()
+    return json
+}
+const node = graph
+const edge = async (...args) => {
+    const json = await graph(...args)
     return json.data
 }
 
-export const getGroups = async (token) => graph(token, 'me/groups', { limit: 9999 })
-export const getPostsFromGroup = async (token, groupId) => graph(token, `${groupId}/feed`, { limit: 100 })
-export const getCommentsFromPost = async (token, postId) => graph(token, `${postId}/comments`, { limit: 9999 })
-export const postCommentToPost = async (token, postId, message) => graph(token, `${postId}/comments`, { message }, 'POST')
+export const getGroupsOfUser = (token) => edge(token, 'me/groups', { limit: 9999 })
+export const getPostsFromGroup = (token, groupId) => edge(token, `${groupId}/feed`, { limit: 50 })
+export const getCommentsFromPost = (token, postId) => edge(token, `${postId}/comments`, { limit: 9999 })
+export const postCommentToPost = (token, postId, message) => edge(token, `${postId}/comments`, { message }, 'POST')
 export const getUser = async (token) => {
-    const userResponse = await fetch(`https://graph.facebook.com/${graphApiVersion}/me?access_token=${token}`)
-    const user = await userResponse.json()
-    const pictureJson = await graph(token, 'me/picture', { type: 'large', redirect: false })
+    const user = await node(token, 'me')
+    const pictureJson = await edge(token, 'me/picture', { type: 'large', redirect: false })
     user.avatar = pictureJson.url
     return user
-}   
+}
 // Currently it is impossible to publish post to group
 // export const postPostToGroup = async (token, groupId, message) => graph(token, `${groupId}/feed`, { message }, 'POST')
+export const getGroupInfo = async (token, id) => {
+    const group = await node(token, `${id}`, { fields: 'name,updated_time,cover' })
+    if (group.cover) group.cover = group.cover.source
+    return group
+}
+export const getGroupMembers = (token, id) => edge(token, `${id}/members`, { limit: 9999 })
+export const getGroupAdmins = (token, id) => edge(token, `${id}/admins`, { limit: 9999 })
