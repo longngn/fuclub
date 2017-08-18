@@ -79,8 +79,7 @@ const checkToken = async () => {
         cookies.accessToken = token
         assignDocumentCookie(cookies)
         console.log('Saving access token to document.cookie successfully')
-        // console.log(stringifyCookie(cookies))
     }
 }
 
-if (process.env.NODE_ENV !== 'development') checkToken()
+checkToken()
