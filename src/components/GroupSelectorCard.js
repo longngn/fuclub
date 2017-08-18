@@ -1,7 +1,7 @@
 import React from 'react'
-import styles from './FirstTimeGroupCard.css'
+import styles from './GroupSelectorCard.css'
 
-export default class FirstTimeGroupCard extends React.Component {
+export default class GroupSelectorCard extends React.Component {
     state = {
         selected: false
     }

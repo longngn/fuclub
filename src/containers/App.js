@@ -1,5 +1,5 @@
 import React from 'react'
-import FirstTimeGroupSelector from './FirstTimeGroupSelector'
+import GroupSelector from './GroupSelector'
 import MainScreen from './MainScreen'
 import Loading from '../components/Loading'
 import styles from './App.css'
@@ -34,10 +34,10 @@ export default class App extends React.Component {
         return (
             <div className={styles.container}>
                 {loading? <Loading /> :
-                    user? <MainScreen groupIds={user.groups} accessToken={accessToken}/> :
-                    <FirstTimeGroupSelector 
+                    (user && user.groups)? <MainScreen groupIds={user.groups} accessToken={accessToken}/> :
+                    <GroupSelector 
                         accessToken={this.props.accessToken}
-                        onSelect={this.onFirstTimeSelect} 
+                        onSelect={this.onFirstTimeSelect}
                     />
                 }
             </div>

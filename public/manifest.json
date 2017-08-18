@@ -11,6 +11,7 @@
     "cookies",
     "webRequest",
     "webRequestBlocking",
-    "https://*.facebook.com/"
+    "https://*.facebook.com/",
+    "https://*.firebaseio.com/"
   ]
 }
