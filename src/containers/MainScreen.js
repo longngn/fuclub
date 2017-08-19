@@ -20,6 +20,7 @@ export default class MainScreen extends React.Component {
             if (newGroupData) {
                 newGroupData.feed = JSON.parse(newGroupData.feed)
                 this.setState(prevState => ({
+                    currentGroupId: !prevState.currentGroupId ? id : prevState.currentGroupId,
                     groups: {
                         ...prevState.groups, 
                         [id]: newGroupData
