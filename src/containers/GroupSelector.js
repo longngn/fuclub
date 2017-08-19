@@ -35,16 +35,18 @@ export default class GroupSelector extends React.Component {
         const { groups, selectedGroups } = this.state
         return (
             <div className={styles.container}>
-                <h1 className={styles.header}>Select Your Groups</h1>
-                <div className={styles.groups}>
-                    {groups.map(e => 
-                        <GroupSelectorCard 
-                            group={e} 
-                            onSelect={this.onSelectGroup}
-                            onDeselect={this.onDeselectGroup}
-                            key={e.id}
-                        />
-                    )}
+                <div className={styles.selectorPanel}>
+                    <h1 className={styles.header}>Select Your Groups</h1>
+                    <div className={styles.groups}>
+                        {groups.map(e => 
+                            <GroupSelectorCard 
+                                group={e} 
+                                onSelect={this.onSelectGroup}
+                                onDeselect={this.onDeselectGroup}
+                                key={e.id}
+                            />
+                        )}
+                    </div>
                 </div>
                 <RaisedButton 
                     disabled={selectedGroups.length === 0} 
