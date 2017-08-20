@@ -21,3 +21,13 @@ export const updateGroupsOnBackground = (accessToken, groupIds) => {
         }
     })
 }
+
+export const updateUserOnBackground = async (accessToken, uid) => {
+    const userOnDb = await db.getUser(uid)
+    const userOnGraph = await graph.getUser(accessToken, uid)
+    if (userOnDb !== null)
+        if (userOnDb.name !== userOnGraph.name || userOnDb.avatar !== userOnGraph.avatar) {
+            const newUser = Object.assign(userOnDb, userOnGraph)
+            db.updateUser(newUser)
+        }
+}

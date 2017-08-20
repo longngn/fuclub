@@ -5,6 +5,7 @@ import Loading from '../components/Loading'
 import styles from './App.css'
 import * as db from '../services/db'
 import * as graph from '../services/graph'
+import * as bridge from '../services/bridge'
 
 export default class App extends React.Component {
     state = {
@@ -16,16 +17,20 @@ export default class App extends React.Component {
         this.onFirstTimeSelect = this.onFirstTimeSelect.bind(this)
     }
     async componentDidMount() {
-        const { uid } = this.props
+        const { accessToken, uid } = this.props
         const user = await db.getUser(uid)
         if (user) this.setState({ user })
         this.setState({ loading: false })
+
+        db.onUserChange(uid, newUserData => {
+            if (newUserData) this.setState({ user: newUserData })
+        })
+        bridge.updateUserOnBackground(accessToken, uid)
     }
     async onFirstTimeSelect(groups) {
         const { accessToken, uid } = this.props
         const user = await graph.getUser(accessToken, uid)
         user.groups = groups
-        this.setState({ user })
         db.updateUser(user)
     }
     render() {
