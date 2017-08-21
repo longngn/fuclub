@@ -8,7 +8,8 @@ class MessageBox extends React.Component {
         this.state = {
           message: ''
         };
-      }
+    }
+
     trim(message){
         return message.slice(0, message.length - 1)
     }
@@ -26,7 +27,7 @@ class MessageBox extends React.Component {
             message: ''
           });
         }
-      }
+    }
 
     render() {
         return (
@@ -41,7 +42,7 @@ class MessageBox extends React.Component {
               </textarea>
           </form>
         )
-  }
+    }
 }
 
 export default MessageBox

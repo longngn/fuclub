@@ -12,11 +12,12 @@ class MessageList extends React.Component {
     }
 
     getData(values){
-        const messages = Object.entries(values).map(values => {
+        if (values != null){
+            const messages = Object.entries(values).map(values => {
                 return values[1]
             })
-        this.setState({messages : messages})
-
+            this.setState({messages : messages})
+        }
     }
     render(){
         const messageNodes = this.state.messages.map((message) => {
