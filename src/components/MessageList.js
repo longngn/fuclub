@@ -22,10 +22,8 @@ class MessageList extends React.Component {
     render(){
         const messageNodes = this.state.messages.map((message) => {
             return (
-              <div className="card">
-                <div className="card-content">
-                  <Message message = {message} />
-                </div>
+              <div>
+                  <Message message = {message.id + ': ' + message.message} />
               </div>
             )
           });
