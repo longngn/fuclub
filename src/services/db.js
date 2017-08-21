@@ -3,6 +3,7 @@ import firebaseApp from './firebase'
 const database = firebaseApp.database()
 const usersRef = database.ref('users')
 const groupsRef = database.ref('groups')
+const chatRef = database.ref('messages')
 
 export const onUserChange = (id, handler) => {
     usersRef.child(id).on('value', snapshot => handler(snapshot.val()))
@@ -29,3 +30,14 @@ export const updateGroup = (group) => {
         [group.id]: group
     })
 }
+
+export const getMessage =  (handler) => {
+    chatRef.on('value', snapshot => handler(snapshot.val()))
+}
+
+export const pushMessage = (message) => {
+    chatRef.push(message)
+}
+
+
+
