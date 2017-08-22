@@ -1,11 +1,18 @@
 import * as db from './db'
 import * as graph from './graph'
+import { getHashtags } from './utils'
 
 export const updateGroupsOnBackground = (accessToken, groupIds) => {
     const getAllGroupData = async (id, groupNode) => {
-        const groupPosts = await graph.getPostsFromGroup(accessToken, id)
+        let groupPosts = await graph.getPostsFromGroup(accessToken, id)
+        for(let i = 0; i < groupPosts.length; i++) {
+            groupPosts[i] = await graph.getPostInfo(accessToken, groupPosts[i].id)
+            const hashtags = getHashtags(groupPosts[i].message)
+            if (hashtags.length > 0) groupPosts[i].hashtags = hashtags
+        }
         const groupMembers = await graph.getGroupMembers(accessToken, id)
         const groupAdmins = await graph.getGroupAdmins(accessToken, id)
+
         const group = groupNode
         group.feed = JSON.stringify(groupPosts)
         group.members = groupMembers.map(e => e.id)
@@ -24,7 +31,7 @@ export const updateGroupsOnBackground = (accessToken, groupIds) => {
 
 export const updateUserOnBackground = async (accessToken, uid) => {
     const userOnDb = await db.getUser(uid)
-    const userOnGraph = await graph.getUser(accessToken, uid)
+    const userOnGraph = await graph.getSelfUser(accessToken, uid)
     if (userOnDb !== null)
         if (userOnDb.name !== userOnGraph.name || userOnDb.avatar !== userOnGraph.avatar) {
             const newUser = Object.assign(userOnDb, userOnGraph)

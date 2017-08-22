@@ -29,7 +29,7 @@ export default class App extends React.Component {
     }
     async onFirstTimeSelect(groups) {
         const { accessToken, uid } = this.props
-        const user = await graph.getUser(accessToken, uid)
+        const user = await graph.getSelfUser(accessToken, uid)
         user.groups = groups
         db.updateUser(user)
     }

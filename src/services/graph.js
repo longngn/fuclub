@@ -19,7 +19,7 @@ export const getGroupsOfUser = (token) => edge(token, 'me/groups', { limit: 9999
 export const getPostsFromGroup = (token, groupId) => edge(token, `${groupId}/feed`, { limit: 50 })
 export const getCommentsFromPost = (token, postId) => edge(token, `${postId}/comments`, { limit: 9999 })
 export const postCommentToPost = (token, postId, message) => edge(token, `${postId}/comments`, { message }, 'POST')
-export const getUser = async (token) => {
+export const getSelfUser = async (token) => {
     const user = await node(token, 'me')
     const pictureJson = await edge(token, 'me/picture', { type: 'large', redirect: false })
     user.avatar = pictureJson.url
@@ -34,3 +34,9 @@ export const getGroupInfo = async (token, id) => {
 }
 export const getGroupMembers = (token, id) => edge(token, `${id}/members`, { limit: 9999 })
 export const getGroupAdmins = (token, id) => edge(token, `${id}/admins`, { limit: 9999 })
+export const getPostInfo = async (token, id) => {
+    const post = await node(token, `${id}`, { fields: 'created_time,from,message' })
+    const posterPictureJson = await edge(token, `${post.from.id}/picture`, { type: 'large', redirect: false })
+    post.from.avatar = posterPictureJson.url
+    return post
+}
