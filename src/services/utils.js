@@ -11,3 +11,12 @@ export const getHashtags = (text) => {
     })
     return matches
 }
+
+export const getDateInVietnamese = (dateString) => {
+    const date = new Date(dateString)
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    return `${day} Tháng ${month} lúc ${hour}:${minute}`
+}
