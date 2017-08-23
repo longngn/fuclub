@@ -7,8 +7,6 @@ export const updateGroupsOnBackground = (accessToken, groupIds) => {
         let groupPosts = await graph.getPostsFromGroup(accessToken, id)
         for(let i = 0; i < groupPosts.length; i++) {
             groupPosts[i] = await graph.getPostInfo(accessToken, groupPosts[i].id)
-            const hashtags = getHashtags(groupPosts[i].message)
-            if (hashtags.length > 0) groupPosts[i].hashtags = hashtags
         }
         const groupMembers = await graph.getGroupMembers(accessToken, id)
         const groupAdmins = await graph.getGroupAdmins(accessToken, id)
