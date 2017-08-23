@@ -11,6 +11,7 @@ export default ({ post }) =>{
         window.open(address);
     }
     return(
+    post.message != null ?
     <div className = {styles.container}>
         <div>
             <img className = {styles.avatar} src = {post.from.avatar} alt = {post.from.name + "'s avatar"}/>
@@ -31,4 +32,5 @@ export default ({ post }) =>{
             </div> : ""}
         </div>
     </div>
+    : null
 )}
