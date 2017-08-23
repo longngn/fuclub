@@ -43,4 +43,18 @@ p.name:hover {
 p#time {
     color: #90949c;
     font-size: 12px;
+    cursor: pointer;
+}
+
+p#time:hover {
+    text-decoration: underline;
+}
+div.hashtag {
+    color: white;
+    font-style: italic;
+    background-color: #0389ff;
+    border-radius: 6px;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 5px 0px 0px;
+    display: inline-block;
 }
