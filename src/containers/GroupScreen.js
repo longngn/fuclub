@@ -5,7 +5,7 @@ import SplitPane from 'react-split-pane'
 
 export default ({ group }) => (
     <SplitPane split='vertical' minSize={300} defaultSize='50%' primary='second'>
-        <GroupFeed group={group} />
         <Chatbox />
+        <GroupFeed group={group} />
     </SplitPane>
 )
