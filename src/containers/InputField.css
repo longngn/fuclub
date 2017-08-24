@@ -1,0 +1,12 @@
+.outerContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    padding: 5px 10px;
+}

@@ -1,6 +1,5 @@
 import * as db from './db'
 import * as graph from './graph'
-import { getHashtags } from './utils'
 
 export const updateGroupsOnBackground = (accessToken, groupIds) => {
     const getAllGroupData = async (id, groupNode) => {

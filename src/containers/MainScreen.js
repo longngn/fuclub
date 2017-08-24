@@ -41,7 +41,11 @@ export default class MainScreen extends React.Component {
                     groups={groups} 
                     onSelect={this.onSelectGroup}
                 />
-                {currentGroupId !== null && <GroupScreen group={groups[currentGroupId]} />}
+                {currentGroupId !== null && 
+                <GroupScreen 
+                    group={groups[currentGroupId]} 
+                    user={this.props.user} 
+                />}
             </SplitPane>
         )
     }

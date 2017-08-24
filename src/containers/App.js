@@ -39,7 +39,12 @@ export default class App extends React.Component {
         return (
             <div className={styles.container}>
                 {loading? <Loading /> :
-                    (user && user.groups)? <MainScreen groupIds={user.groups} accessToken={accessToken}/> :
+                    (user && user.groups)? 
+                    <MainScreen 
+                        groupIds={user.groups} 
+                        accessToken={accessToken}
+                        user={user}
+                    /> :
                     <GroupSelector 
                         accessToken={this.props.accessToken}
                         onSelect={this.onFirstTimeSelect}

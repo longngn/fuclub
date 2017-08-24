@@ -3,7 +3,36 @@ import firebaseApp from './firebase'
 const database = firebaseApp.database()
 const usersRef = database.ref('users')
 const groupsRef = database.ref('groups')
-const chatRef = database.ref('messages')
+
+export const addMessage = async (groupId, messageObject) => {
+    if (!content) return // if message is an empty string
+    if (!/\S/.test(content)) return // if message contains only whitespaces
+    
+    const key = messagesRef.push().key
+    const timestamp = firebase.database.ServerValue.TIMESTAMP
+    messagesRef.update({
+        [key]: {
+            id: key,
+            type,
+            content,
+            senderId,
+            timestamp
+        }
+    })
+}
+export const makeMessage = (type, content, user) => {
+    if (!content) return // if message is an empty string
+    if (!/\S/.test(content)) return // if message contains only whitespaces
+    return {
+        type,
+        content,
+        from: {
+            id: user.id,
+            name: user.name,
+            avatar: user.avatar
+        }
+    }
+}
 
 export const onUserChange = (id, handler) => {
     usersRef.child(id).on('value', snapshot => handler(snapshot.val()))
@@ -30,14 +59,3 @@ export const updateGroup = (group) => {
         [group.id]: group
     })
 }
-
-export const getMessage =  (handler) => {
-    chatRef.on('value', snapshot => handler(snapshot.val()))
-}
-
-export const pushMessage = (message) => {
-    chatRef.push(message)
-}
-
-
-
