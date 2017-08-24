@@ -1,28 +1,29 @@
+import firebase from 'firebase'
 import firebaseApp from './firebase'
 
 const database = firebaseApp.database()
 const usersRef = database.ref('users')
 const groupsRef = database.ref('groups')
 
+export const messageTypes = {
+    TEXT: 'TEXT',
+    FILE: 'FILE'
+}
 export const addMessage = async (groupId, messageObject) => {
-    if (!content) return // if message is an empty string
-    if (!/\S/.test(content)) return // if message contains only whitespaces
-    
+    const messagesRef = groupsRef.child(groupId).child('messages')
     const key = messagesRef.push().key
     const timestamp = firebase.database.ServerValue.TIMESTAMP
     messagesRef.update({
         [key]: {
+            ...messageObject,
             id: key,
-            type,
-            content,
-            senderId,
             timestamp
         }
     })
 }
 export const makeMessage = (type, content, user) => {
-    if (!content) return // if message is an empty string
-    if (!/\S/.test(content)) return // if message contains only whitespaces
+    if (!content) return null // if message is an empty string
+    if (!/\S/.test(content)) return null // if message contains only whitespaces
     return {
         type,
         content,

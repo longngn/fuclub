@@ -9,6 +9,7 @@ export default ({ onSend, onFileSelected, onLogOut }) => {
     const handleFileInput = (e) => {
         const file = e.target.files[0]
         if (file) onFileSelected(file)
+        fileInputNode.value = ''
     }
 
     return (
@@ -24,7 +25,7 @@ export default ({ onSend, onFileSelected, onLogOut }) => {
                 iconStyle={{ color: colors.ownedMessage }}
                 tooltip='Upload image or file'
                 touch={true}
-                onTouchTap={() => {
+                onClick={() => {
                     const element = ReactDOM.findDOMNode(fileInputNode)
                     element.click()
                 }}
@@ -34,7 +35,7 @@ export default ({ onSend, onFileSelected, onLogOut }) => {
                 iconStyle={{ color: colors.ownedMessage }}
                 tooltip='Send message'
                 touch={true}
-                onTouchTap={onSend}
+                onClick={onSend}
             />
         </div>
     )

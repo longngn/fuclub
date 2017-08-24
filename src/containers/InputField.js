@@ -22,8 +22,13 @@ export default class InputField extends React.Component {
     }
 
     sendMessage = () => {
-        const { message } = this.state
-        db.addMessage(db.messageTypes.TEXT, message, this.props.user.id)
+        const { user, groupId } = this.props
+        const messageObject = db.makeMessage(
+            db.messageTypes.TEXT, 
+            this.state.message, 
+            user
+        )
+        if (messageObject) db.addMessage(groupId, messageObject)
         this.setState({ message: '' })
     }
     handleKeyDown = (event) => {
@@ -42,18 +47,19 @@ export default class InputField extends React.Component {
             this.setState({ alertAnotherFileIsBeingUploaded: true })
             return
         }
-
         this.upload.onProgress(progress => this.setState({ uploadingProgress: progress }))
         const downloadURL = await this.upload.upFile(file)
-        db.addMessage(
+        const { user, groupId } = this.props
+        const messageObject = db.makeMessage(
             db.messageTypes.FILE,
             {
                 name: file.name,
                 downloadURL,
                 type: file.type
             },
-            this.props.user.id
+            user
         )
+        if (messageObject) db.addMessage(groupId, messageObject)
     }
 
     render() {
