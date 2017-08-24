@@ -14,7 +14,7 @@ export default ({ post, admins}) =>{
     post.message != null ?
     <div className = {styles.container}>
         {admins.indexOf(post.from.id) >= 0 ?
-        <img className={styles.adminPost} src = {require('./admin.png')} Alt = "admin's post" />
+        <img className={styles.adminPost} src = {require('./admin.svg')} Alt = "admin's post" />
         :null}
         <div>
             <img onClick = {() => redirect(profileLink)} className = {styles.avatar} src = {post.from.avatar} alt = {post.from.name + "'s avatar"}/>
