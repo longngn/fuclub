@@ -3,50 +3,65 @@
     padding: 0px 12px 12px 12px;
     margin: 10px;
     box-shadow: 1px 1px 2px grey;
-    /* cursor: pointer; */
-    cursor: default;
+    border-radius: 3px;
+    position: relative;
 }
 .avatar {
-    display: block;
-    border-radius: 25px;
-    box-sizing: border-box;
-}
-img {
     float:left;
-    margin-right: 10px;
     height: 50px;
     width: 50px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    margin-right: 10px;
     object-fit: cover;
     object-position: center; 
+    cursor: pointer;
+}
+
+img.adminPost {
+    position:absolute;
+    top:0;
+    right:0;
+    width: 50px;
+    height: 50px;
 }
 
 .post {
     white-space: pre-wrap;
-    font-size: 14px
+    font-size: 14px;
+    word-wrap:break-word;
 }
 
-p.name {
+div.name {
     color: #365899;
     font-weight: bold;
     font-size: 14px;
     text-decoration: none;
     cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    display: inline-block;
 }
 
-p.name:hover {
+div.name:hover {
     color: #365899;
     font-weight: bold;
     font-size: 14px;
     text-decoration: underline;
+
 }
 
-p#time {
+div#time {
     color: #90949c;
     font-size: 12px;
     cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
-p#time:hover {
+div#time:hover {
     text-decoration: underline;
 }
 div.hashtag {

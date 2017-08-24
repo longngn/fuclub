@@ -3,7 +3,7 @@ import styles from './GroupPost.css'
 import Linkify from 'react-linkify'
 import * as utils from '../services/utils'
 
-export default ({ post }) =>{
+export default ({ post, admins}) =>{
     const postLink = "https://facebook.com/" + post.id
     const profileLink = "https://facebook.com/" + post.from.id;
 
@@ -13,14 +13,18 @@ export default ({ post }) =>{
     return(
     post.message != null ?
     <div className = {styles.container}>
+        {admins.indexOf(post.from.id) >= 0 ?
+        <img className={styles.adminPost} src = {require('./admin.png')} Alt = "admin's post" />
+        :null}
         <div>
-            <img className = {styles.avatar} src = {post.from.avatar} alt = {post.from.name + "'s avatar"}/>
-            <p className = {styles.name} onClick = {() => {redirect(profileLink)}}>
+            <img onClick = {() => redirect(profileLink)} className = {styles.avatar} src = {post.from.avatar} alt = {post.from.name + "'s avatar"}/>
+            <div className = {styles.name} onClick = {() => {redirect(profileLink)}}>
                 {post.from.name}
-            </p>
-            <p onClick = {() => redirect(postLink)} id = {styles.time}>
+            </div>
+            <br/>
+            <div onClick = {() => redirect(postLink)} id = {styles.time}>
                 {utils.getDateInVietnamese(post.created_time)}
-            </p>
+            </div>
         </div>
         <div className={styles.post}>
             <Linkify properties = {{target: '_blank', style:{color: '#365899'} }}>
@@ -29,7 +33,7 @@ export default ({ post }) =>{
             {utils.getHashtags(post.message).length !== 0 ? 
             <div>{utils.getHashtags(post.message).map(values =>
                 <div className={styles.hashtag}>{values}</div>)}
-            </div> : ""}
+            </div> : null}
         </div>
     </div>
     : null
