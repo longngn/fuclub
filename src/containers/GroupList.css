@@ -1,0 +1,9 @@
+.groupItems{
+    display: block;
+}
+.addbutton{
+    position: absolute;
+    bottom: 5px;
+    margin: 0 auto;
+    width: 100%;
+}

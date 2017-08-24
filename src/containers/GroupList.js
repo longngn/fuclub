@@ -1,7 +1,8 @@
 import React from 'react'
 import GroupListItem from '../components/GroupListItem'
-
+import styles from './GroupList.css'
 export default ({ groups, onSelect }) => (
+    <div className={styles.groupItems}>
     <div>
         {Object.values(groups).map(group => 
             <GroupListItem
@@ -10,5 +11,7 @@ export default ({ groups, onSelect }) => (
                 group={group}
             />
         )}
+    </div>
+    <button className={styles.addbutton}> Add More Groups </button>
     </div>
 )
