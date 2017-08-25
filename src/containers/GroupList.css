@@ -1,7 +1,8 @@
-.groupItems{
+.container {
+	flex: 0 0 250px;
 	display: block;
 	overflow-y: scroll;
-	height:90%;
+	height: 90%;
 }
 
 .addbutton {

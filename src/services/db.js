@@ -41,7 +41,6 @@ export const onMessagesDataChange = (groupId, handler) => {
         const messages = []
         snapshot.forEach(messageSnapshot => { messages.push(messageSnapshot.val()) })
         handler(messages)
-        console.log(messages)
     })
 }
 export const offMessagesDataChange = (groupId, onFunction) => {
