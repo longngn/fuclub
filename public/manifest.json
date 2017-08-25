@@ -14,5 +14,5 @@
     "https://*.facebook.com/",
     "https://*.firebaseio.com/"
   ],
-  "content_security_policy": "script-src 'self' https://*.firebaseio.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://*.firebaseio.com https://*.fontawesome.com; object-src 'self'"
 }
