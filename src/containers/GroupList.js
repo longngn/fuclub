@@ -1,6 +1,8 @@
-import React from 'react'
-import GroupListItem from '../components/GroupListItem'
-import styles from './GroupList.css'
+import React from 'react';
+import GroupListItem from '../components/GroupListItem';
+import styles from './GroupList.css';
+import SkyLight from 'react-skylight';
+
 export default ({ groups, onSelect }) => (
     <div className={styles.groupItems}>
     <div>
@@ -12,6 +14,7 @@ export default ({ groups, onSelect }) => (
             />
         )}
     </div>
-    <button className={styles.addbutton}> Add More Groups </button>
+    <button className={styles.addbutton} > Add More Groups </button>
+    
     </div>
 )

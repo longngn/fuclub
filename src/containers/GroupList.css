@@ -1,5 +1,7 @@
 .groupItems{
-    display: block;
+	display: block;
+	overflow-y: scroll;
+	height:90%;
 }
 
 .addbutton {
