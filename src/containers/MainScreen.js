@@ -1,7 +1,6 @@
 import React from 'react'
 import GroupList from './GroupList'
 import GroupScreen from './GroupScreen'
-import SplitPane from 'react-split-pane'
 import * as db from '../services/db'
 import { updateGroupsOnBackground } from '../services/bridge'
 
@@ -35,14 +34,22 @@ export default class MainScreen extends React.Component {
     }
     render() {
         const { groups, currentGroupId } = this.state
+        const containerStyle = {
+            flex: '1 1 auto',
+            display: 'flex',
+        }
         return (
-            <SplitPane split='vertical' minSize={50} defaultSize={200}>
+            <div style={containerStyle}>
                 <GroupList 
                     groups={groups} 
                     onSelect={this.onSelectGroup}
                 />
-                {currentGroupId !== null && <GroupScreen group={groups[currentGroupId]} />}
-            </SplitPane>
+                {currentGroupId !== null && 
+                <GroupScreen 
+                    group={groups[currentGroupId]} 
+                    user={this.props.user} 
+                />}
+            </div>
         )
     }
 }

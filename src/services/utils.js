@@ -7,7 +7,7 @@ export const getHashtags = (text) => {
     if (matches == null) return []
     matches = matches.map(match => {
         while (match[0] !== '#') match = match.slice(1)
-            return match
+        return match
     })
     return matches
 }

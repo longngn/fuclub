@@ -1,21 +1,17 @@
 import React from 'react'
-import * as db from '../services/db'
-import MessageList from '../components/MessageList'
-import MessageBox from '../components/MessageBox'
+import Divider from 'material-ui/Divider'
+import InputField from './InputField'
+import MessagesArea from './MessagesArea'
+import styles from './Chatbox.css'
 
-export default class Chatbox extends React.Component {
-    render(){
-        return(
-            <div>
-                <div>
-                    <h2> Chatbox </h2>
-                </div>
-                <div>
-                    <MessageList db={db}/>
-                </div>
-                <div>
-                    <MessageBox db={db}/>
-                </div>
+export default class App extends React.Component {
+    render() {
+        const { user, groupId } = this.props
+        return (
+            <div className={styles.container}>
+                <MessagesArea user={user} groupId={groupId} />
+                <Divider style={{ flex: '0 0 auto' }}/>
+                <InputField user={user} groupId={groupId} />
             </div>
         )
     }
