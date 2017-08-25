@@ -1,8 +1,11 @@
-import React from 'react'
-import GroupListItem from '../components/GroupListItem'
+import React from 'react';
+import GroupListItem from '../components/GroupListItem';
+import styles from './GroupList.css';
+import SkyLight from 'react-skylight';
 
 export default ({ groups, onSelect }) => (
-    <div style={{ flex: '0 0 200px' }}>
+    <div className={styles.groupItems}>
+    <div>
         {Object.values(groups).map(group => 
             <GroupListItem
                 key={group.id}
@@ -10,5 +13,8 @@ export default ({ groups, onSelect }) => (
                 group={group}
             />
         )}
+    </div>
+    <button className={styles.addbutton} > Add More Groups </button>
+    
     </div>
 )
