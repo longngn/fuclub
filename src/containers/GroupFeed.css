@@ -1,4 +1,5 @@
 .container {
+    flex: 5 5 300px;
     display: flex;
     flex-direction: column;
     overflow-y: auto;

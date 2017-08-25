@@ -1,11 +1,16 @@
 import React from 'react'
 import Chatbox from './Chatbox'
 import GroupFeed from './GroupFeed'
-import SplitPane from 'react-split-pane'
 
-export default ({ group, user }) => (
-    <SplitPane split='vertical' minSize={300} defaultSize='50%' primary='second'>
-        <Chatbox groupId={group.id} user={user} />
-        <GroupFeed group={group} />
-    </SplitPane>
-)
+export default ({ group, user }) => {
+    const containerStyle = {
+        flex: '1 1 auto',
+        display: 'flex'
+    }
+    return (
+        <div style={containerStyle}>
+            <Chatbox groupId={group.id} user={user} />
+            <GroupFeed group={group} />
+        </div>
+    )
+}

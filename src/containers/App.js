@@ -2,7 +2,6 @@ import React from 'react'
 import GroupSelector from './GroupSelector'
 import MainScreen from './MainScreen'
 import Loading from '../components/Loading'
-import styles from './App.css'
 import * as db from '../services/db'
 import * as graph from '../services/graph'
 import * as bridge from '../services/bridge'
@@ -36,8 +35,12 @@ export default class App extends React.Component {
     render() {
         const { accessToken } = this.props
         const { user, loading } = this.state
+        const containerStyle = {
+            display: 'flex',
+            flex: '1 1 auto'
+        }
         return (
-            <div className={styles.container}>
+            <div style={containerStyle}>
                 {loading? <Loading /> :
                     (user && user.groups)? 
                     <MainScreen 

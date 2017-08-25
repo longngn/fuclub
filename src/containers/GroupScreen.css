@@ -1,0 +1,12 @@
+.container {
+    flex: 1 1 auto;
+    display: flex;
+}
+
+.chatbox {
+    flex: 7 7 auto;
+}
+
+.feed {
+    flex: 3 3 auto;
+}
