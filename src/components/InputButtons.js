@@ -29,6 +29,7 @@ export default ({ onSend, onFileSelected, onLogOut }) => {
                     const element = ReactDOM.findDOMNode(fileInputNode)
                     element.click()
                 }}
+                tooltipPosition='top-center'
             />
             <IconButton 
                 iconClassName='fa fa-paper-plane-o'
@@ -36,6 +37,7 @@ export default ({ onSend, onFileSelected, onLogOut }) => {
                 tooltip='Send message'
                 touch={true}
                 onClick={onSend}
+                tooltipPosition='top-center'
             />
         </div>
     )

@@ -7,10 +7,12 @@ export const Text = ({ children, isOwned }) => isOwned?
     <MessageBubble 
         backgroundColor={colors.ownedMessage}
         color='#fff'
+        isOwned={isOwned}
     >{children}</MessageBubble> :
     <MessageBubble 
         backgroundColor={colors.unownedMessage}
         color='#000'
+        isOwned={isOwned}
     >{children}</MessageBubble>
 
 export const File = ({ isOwned, file }) => {

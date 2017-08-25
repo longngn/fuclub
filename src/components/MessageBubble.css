@@ -1,7 +1,14 @@
-.bubble {
-    border-radius: 0.9em;
+.ownedBubble, .unownedBubble {
     padding: 0.6em;
     margin: 0.25em;
+}
+
+.unownedBubble {
+    border-radius: 0 1em 1em;    
+}
+
+.ownedBubble {
+    border-radius: 1em 0 1em 1em;    
 }
 
 .text {
