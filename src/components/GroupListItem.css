@@ -1,13 +1,13 @@
 .items{
     padding: 10px;
-    marginBottom: 10px;
+    margin-bottom: 0px;
     display: block;
 }
 .items:hover{
     border: 2px solid #DDE0E2;
     cursor: pointer;
 }
-button{
+.rb{
     background-color: #21759B;
     background-image: linear-gradient(to bottom, #2A95C5, #21759B);
     box-shadow: 0 1px 0 rgba(120, 200, 230, 0.5) inset;
@@ -21,14 +21,13 @@ button{
     cursor: pointer;
     white-space: nowrap;
     font-size: 15px;
-    position: absolute;
-    right: 0px;
+    position: relative;
     display: none;
 }
-div:hover +button{
+.items:hover +.rb{
     display: block;
 }
-button:hover, button:focus{
+.rb:hover{
     display: block;
     background-color: #278AB7;
     background-image: linear-gradient(to bottom,#2E9FD2,#21759B);
