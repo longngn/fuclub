@@ -6,8 +6,8 @@
 
 .addbutton {
     position: absolute;
-    bottom: 5px;
-    left: 15px;
+	bottom: 5px;
+	width: 100%;
     text-align: center;
 	background-color:#61c9e8;
 	-moz-border-radius:28px;
