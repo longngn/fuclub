@@ -1,8 +1,8 @@
 {
-  "name": "FU Club Manager",
+  "name": "FU Clubs Manager",
   "short_name": "FUCM",
   "description": "Một extension Chrome để quản lý các CLB của Đại học FPT trên trang New Tab.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"

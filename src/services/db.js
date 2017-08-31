@@ -60,6 +60,9 @@ export const updateUser = (user) => {
         [user.id]: user
     })
 }
+export const updateUserGroups = (uid, groups) => {
+    usersRef.child(uid).update({ groups })
+}
 
 export const onGroupChange = (id, handler) => {
     groupsRef.child(id).on('value', snapshot => handler(snapshot.val()))

@@ -12,9 +12,13 @@ export default class MainScreen extends React.Component {
             groups: {}
         }
         this.onSelectGroup = this.onSelectGroup.bind(this)
+        this.onRemoveGroup = this.onRemoveGroup.bind(this)
     }
     componentDidMount() {
-        const { groupIds, accessToken } = this.props
+        this.addGroups(this.props.groupIds)
+    }
+    addGroups(groupIds) {
+        const { accessToken } = this.props
         groupIds.forEach(id => db.onGroupChange(id, newGroupData => {
             if (newGroupData) {
                 newGroupData.feed = JSON.parse(newGroupData.feed)
@@ -32,6 +36,18 @@ export default class MainScreen extends React.Component {
     onSelectGroup(id) {
         this.setState({ currentGroupId: id })
     }
+    onRemoveGroup(deletedGroupId) {
+        this.setState((prevState, props) => {
+            const newGroups = Object.assign({}, prevState.groups)
+            delete newGroups[deletedGroupId]
+            const nextGroupId = Object.keys(newGroups)[0];
+            db.updateUserGroups(props.user.id, Object.keys(newGroups))
+            return {
+                groups: newGroups,
+                currentGroupId: nextGroupId
+            }
+        })
+    }
     render() {
         const { groups, currentGroupId } = this.state
         const containerStyle = {
@@ -43,8 +59,9 @@ export default class MainScreen extends React.Component {
                 <GroupList 
                     groups={groups} 
                     onSelect={this.onSelectGroup}
+                    onRemove={this.onRemoveGroup}
                 />
-                {currentGroupId !== null && 
+                {currentGroupId && 
                 <GroupScreen 
                     group={groups[currentGroupId]} 
                     user={this.props.user} 
