@@ -34,7 +34,7 @@ export default ({ post, admins}) =>{
                 {utils.getHashtags(post.message).length !== 0 &&
                 <div>
                     {utils.getHashtags(post.message).map((hashtag, idx) =>
-                        <div className={styles.hashtag} key={idx}>=>
+                        <div className={styles.hashtag} key={idx}>
                             {hashtag}
                         </div>
                     )}
