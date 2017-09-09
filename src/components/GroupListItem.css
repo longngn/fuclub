@@ -7,7 +7,7 @@
     position: relative;
 }
 .container:hover {
-    background-color: #CCC;
+    background-color: #EEE;
 }
 .container:hover > .removeButton {
     display: initial;

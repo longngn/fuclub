@@ -73,6 +73,7 @@ export default class MainScreen extends React.Component {
                 <GroupList 
                     groupsData={groupsById}
                     groupsOrder={groupsAllIds}
+                    currentGroupId={currentGroupId}
                     onSelect={this.handleSelectGroup}
                     onRemove={this.handleRemoveGroup}
                     onAddGroups={this.handleAddGroups}

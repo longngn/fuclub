@@ -14,16 +14,17 @@ export default class GroupList extends React.Component {
             this.setState({ isSelectingGroups: true })
     }
     render() {
-        const { groupsData, groupsOrder, onSelect, onRemove } = this.props
+        const { groupsData, groupsOrder, onSelect, onRemove, currentGroupId } = this.props
         return (
             <div className={styles.container}>
                 <div>
                     {groupsOrder.filter(gid => gid in groupsData).map(gid => (
                         <GroupListItem
                             key={gid}
+                            group={groupsData[gid]}
+                            isBeingSelected={gid === currentGroupId}
                             onSelect={onSelect}
                             onRemove={onRemove}
-                            group={groupsData[gid]}
                         />
                     ))}
                 </div>
