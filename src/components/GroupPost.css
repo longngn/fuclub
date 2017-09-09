@@ -11,6 +11,7 @@
     height: 50px;
     width: 50px;
     border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, .1);
     box-sizing: border-box;
     margin-top: 10px;
     margin-right: 10px;
@@ -33,19 +34,19 @@ object.adminPost {
     word-wrap:break-word;
 }
 
-div.name {
+a#name {
     color: #365899;
     font-weight: bold;
     font-size: 14px;
     text-decoration: none;
     cursor: pointer;
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     padding-top: 5px;
     display: inline-block;
 }
 
-div.name:hover {
+a#name:hover {
     color: #365899;
     font-weight: bold;
     font-size: 14px;
@@ -53,15 +54,16 @@ div.name:hover {
 
 }
 
-div#time {
+a#time {
     color: #90949c;
     font-size: 12px;
     cursor: pointer;
     margin-bottom: 20px;
     display: inline-block;
+    text-decoration: none;
 }
 
-div#time:hover {
+a#time:hover {
     text-decoration: underline;
 }
 div.hashtag {

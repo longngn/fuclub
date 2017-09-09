@@ -19,12 +19,11 @@ export default ({ post, admins}) =>{
             </object>}
             <div>
                 <img onClick = {() => redirect(profileLink)} className = {styles.avatar} src = {post.from.avatar} alt = {post.from.name + "'s avatar"}/>
-                <div className = {styles.name} onClick = {() => {redirect(profileLink)}}>
-                    {post.from.name}
+                <div >
+                <a id = {styles.name} href = {profileLink} target = "_blank">{post.from.name}</a>
                 </div>
-                <br/>
-                <div onClick = {() => redirect(postLink)} id = {styles.time}>
-                    {utils.getDateInVietnamese(post.created_time)}
+                <div>
+                <a id = {styles.time} href = {postLink} target = "_blank">{utils.getDateInVietnamese(post.created_time)}</a>
                 </div>
             </div>
             <div className={styles.post}>
@@ -34,7 +33,7 @@ export default ({ post, admins}) =>{
                 {utils.getHashtags(post.message).length !== 0 &&
                 <div>
                     {utils.getHashtags(post.message).map((hashtag, idx) =>
-                        <div className={styles.hashtag} key={idx}>=>
+                        <div className={styles.hashtag} key={idx}>
                             {hashtag}
                         </div>
                     )}

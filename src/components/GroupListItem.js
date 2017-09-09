@@ -2,13 +2,14 @@ import React from 'react'
 import styles from './GroupListItem.css'
 
 export default ({ group, onSelect, onRemove }) => {
-    
+    const defaultCover = "https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/Onaj08c4thr.png"
     return(
-    <div>
-        <div className={styles.items} onClick={() => onSelect(group.id)}>
-            <p>{group.name}</p>
-        </div>
-        <button className={styles.rb} onClick={() => onRemove(group.id)}> remove </button>
+    <div onClick={() => onSelect(group.id)} title = {group.name} className={styles.items}>
+        <img src = {group.cover ? group.cover : defaultCover} className={styles.cover} alt = {group.name}>
+        </img>
+        <div className = {styles.groupName}>
+             {group.name}
+        </div>   
     </div>
     )
 }
