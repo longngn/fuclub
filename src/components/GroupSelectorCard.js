@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './GroupSelectorCard.css'
+import { colors } from '../config'
 
 export default class GroupSelectorCard extends React.Component {
     state = {
@@ -20,10 +21,13 @@ export default class GroupSelectorCard extends React.Component {
         return (
             <div 
                 className={styles.container} 
-                style={this.state.selected? { border: '3px solid blue' } : {}}
+                style={this.state.selected? { 
+                    backgroundColor: colors.sub, 
+                    color: '#FFF' 
+                } : {}}
                 onClick={this.onClick}
             >
-                <p className={styles.title}>{name}</p>
+                <p className={styles.groupName}>{name}</p>
             </div>
         )
     }
