@@ -1,7 +1,7 @@
 import React from 'react';
 import GroupListItem from '../components/GroupListItem';
+import AddGroupButton from '../components/AddGroupButton'
 import GroupSelector from './GroupSelector'
-import RaisedButton from 'material-ui/RaisedButton'
 import styles from './GroupList.css';
 
 export default class GroupList extends React.Component {
@@ -28,11 +28,12 @@ export default class GroupList extends React.Component {
                         />
                     ))}
                 </div>
-                <RaisedButton 
+                <AddGroupButton onClick={() => this.setState({ isSelectingGroups: true })} />
+                {/* <RaisedButton 
                     label='Thêm nhóm...'
                     primary={true}
                     onClick={() => this.setState({ isSelectingGroups: true })}
-                />
+                /> */}
                 <GroupSelector 
                     existedGroups={groupsOrder}
                     open={this.state.isSelectingGroups} 

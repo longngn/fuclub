@@ -1,0 +1,18 @@
+.container > div {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    padding-left: 8px;
+}
+
+.icon {
+    width: 45px;
+    height: auto;
+}
+
+.label {
+    margin: 0;
+    margin-left: 5px;
+    font-size: 0.8em;
+    color: #333;
+}
