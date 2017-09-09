@@ -9,6 +9,16 @@
 .container:hover {
     background-color: #CCC;
 }
+.container:hover > .removeButton {
+    display: initial;
+}
+
+.removeButton {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
 
 .cover {
     float: left;
@@ -33,12 +43,6 @@
     margin-top: 15px;
     margin-bottom: 15px;
     margin-left: 5px;
-}
-
-.removeButton {
-    position: absolute;
-    top: 5px;
-    right: 5px;
 }
 
 /* .items:hover{
