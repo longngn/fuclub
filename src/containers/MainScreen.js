@@ -9,23 +9,26 @@ export default class MainScreen extends React.Component {
         super(props)
         this.state = {
             currentGroupId: null,
-            groups: {}
+            groupsById: {},
+            groupsAllIds: this.props.groupIds || []
         }
-        this.onSelectGroup = this.onSelectGroup.bind(this)
-        this.onRemoveGroup = this.onRemoveGroup.bind(this)
+        this.handleSelectGroup = this.handleSelectGroup.bind(this)
+        this.handleRemoveGroup = this.handleRemoveGroup.bind(this)
+        this.handleAddGroups = this.handleAddGroups.bind(this)
     }
     componentDidMount() {
-        this.addGroups(this.props.groupIds)
+        this.fetchGroups(this.props.groupIds)
     }
-    addGroups(groupIds) {
+    fetchGroups(groupIds) {
+        if (!groupIds || !Array.isArray(groupIds)) return
         const { accessToken } = this.props
         groupIds.forEach(id => db.onGroupChange(id, newGroupData => {
             if (newGroupData) {
                 newGroupData.feed = JSON.parse(newGroupData.feed)
                 this.setState(prevState => ({
                     currentGroupId: !prevState.currentGroupId ? id : prevState.currentGroupId,
-                    groups: {
-                        ...prevState.groups, 
+                    groupsById: {
+                        ...prevState.groupsById, 
                         [id]: newGroupData
                     }
                 }))
@@ -33,23 +36,32 @@ export default class MainScreen extends React.Component {
         }))
         updateGroupsOnBackground(accessToken, groupIds)
     }
-    onSelectGroup(id) {
+    handleSelectGroup(id) {
         this.setState({ currentGroupId: id })
     }
-    onRemoveGroup(deletedGroupId) {
+    handleAddGroups(groupIds) {
+        this.fetchGroups(groupIds)
         this.setState((prevState, props) => {
-            const newGroups = Object.assign({}, prevState.groups)
-            delete newGroups[deletedGroupId]
-            const nextGroupId = Object.keys(newGroups)[0];
-            db.updateUserGroups(props.user.id, Object.keys(newGroups))
+            const newGroupsOrder = [...prevState.groupsAllIds, ...groupIds]
+            db.updateUserGroups(props.user.id, newGroupsOrder)
+            return { 
+                groupsAllIds: newGroupsOrder
+            }
+        })
+    }
+    handleRemoveGroup(deletedGroupId) {
+        this.setState((prevState, props) => {
+            const newGroupsOrder = prevState.groupsAllIds.filter(gid => gid !== deletedGroupId)
+            const nextGroupId = deletedGroupId === prevState.currentGroupId? newGroupsOrder[0] : prevState.currentGroupId
+            db.updateUserGroups(props.user.id, newGroupsOrder)
             return {
-                groups: newGroups,
+                groupsAllIds: newGroupsOrder,
                 currentGroupId: nextGroupId
             }
         })
     }
     render() {
-        const { groups, currentGroupId } = this.state
+        const { groupsById, groupsAllIds, currentGroupId } = this.state
         const containerStyle = {
             flex: '1 1 auto',
             display: 'flex',
@@ -57,13 +69,16 @@ export default class MainScreen extends React.Component {
         return (
             <div style={containerStyle}>
                 <GroupList 
-                    groups={groups} 
-                    onSelect={this.onSelectGroup}
-                    onRemove={this.onRemoveGroup}
+                    groupsData={groupsById}
+                    groupsOrder={groupsAllIds}
+                    onSelect={this.handleSelectGroup}
+                    onRemove={this.handleRemoveGroup}
+                    onAddGroups={this.handleAddGroups}
+                    accessToken={this.props.accessToken}
                 />
                 {currentGroupId && 
                 <GroupScreen 
-                    group={groups[currentGroupId]} 
+                    group={groupsById[currentGroupId]} 
                     user={this.props.user} 
                 />}
             </div>

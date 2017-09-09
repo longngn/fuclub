@@ -2,14 +2,14 @@ import React from 'react'
 import AppContainer from './AppContainer'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import { indigo500 } from 'material-ui/styles/colors'
+import { colors } from '../config'
 
 const customMuiTheme = getMuiTheme({
     palette: {
-        primary1Color: indigo500
+        primary1Color: colors.main
     },
     flatButton: {
-        primaryTextColor: indigo500
+        primaryTextColor: colors.main
     }
 })
 

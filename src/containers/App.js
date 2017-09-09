@@ -11,26 +11,15 @@ export default class App extends React.Component {
         user: null,
         loading: true
     }
-    constructor(props) {
-        super(props)
-        this.onFirstTimeSelect = this.onFirstTimeSelect.bind(this)
-    }
     async componentDidMount() {
         const { accessToken, uid } = this.props
-        const user = await db.getUser(uid)
-        if (user) this.setState({ user })
-        this.setState({ loading: false })
-
         db.onUserChange(uid, newUserData => {
-            if (newUserData) this.setState({ user: newUserData })
+            this.setState({
+                user: newUserData,
+                loading: newUserData === null
+            })
         })
         bridge.updateUserOnBackground(accessToken, uid)
-    }
-    async onFirstTimeSelect(groups) {
-        const { accessToken, uid } = this.props
-        const user = await graph.getSelfUser(accessToken, uid)
-        user.groups = groups
-        db.updateUser(user)
     }
     render() {
         const { accessToken } = this.props
@@ -41,18 +30,13 @@ export default class App extends React.Component {
         }
         return (
             <div style={containerStyle}>
-                {loading? <Loading /> :
-                    (user && user.groups)? 
-                    <MainScreen 
-                        groupIds={user.groups} 
-                        accessToken={accessToken}
-                        user={user}
-                    /> :
-                    <GroupSelector 
-                        accessToken={this.props.accessToken}
-                        onSelect={this.onFirstTimeSelect}
-                    />
-                }
+                {loading? 
+                <Loading /> : 
+                <MainScreen 
+                    groupIds={user.groups} 
+                    accessToken={accessToken}
+                    user={user}
+                />}
             </div>
         )
     }
