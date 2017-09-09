@@ -78,7 +78,6 @@ const checkToken = async () => {
         cookies.uid = uid
         cookies.accessToken = token
         assignDocumentCookie(cookies)
-        // console.log('Saving access token to document.cookie successfully')
     }
 }
 

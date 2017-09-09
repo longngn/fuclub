@@ -53,8 +53,6 @@ export default class MainScreen extends React.Component {
         this.setState((prevState, props) => {
             const newGroupsOrder = prevState.groupsAllIds.filter(gid => gid !== deletedGroupId)
             const nextGroupId = deletedGroupId === prevState.currentGroupId? newGroupsOrder[0] : prevState.currentGroupId
-            // console.log(`${deletedGroupId} ${prevState.currentGroupId} ${newGroupsOrder[0]} ${nextGroupId}`)
-            console.log(nextGroupId)
             db.updateUserGroups(props.user.id, newGroupsOrder)
             return {
                 groupsAllIds: newGroupsOrder,
