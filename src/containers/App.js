@@ -1,9 +1,7 @@
 import React from 'react'
-import GroupSelector from './GroupSelector'
 import MainScreen from './MainScreen'
 import Loading from '../components/Loading'
 import * as db from '../services/db'
-import * as graph from '../services/graph'
 import * as bridge from '../services/bridge'
 
 export default class App extends React.Component {
