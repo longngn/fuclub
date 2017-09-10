@@ -15,11 +15,10 @@ export default ({ post, admins}) =>{
         <div className = {styles.container}>
             {admins.indexOf(post.from.id) >= 0 &&
             <object 
-            type="image/svg+xml" 
-            data='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzkgMjM5Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6cmVkO30uY2xzLTJ7ZmlsbDojZmYwO308L3N0eWxlPjwvZGVmcz48dGl0bGU+QXNzZXQgMzwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9IkxheWVyXzEtMiIgZGF0YS1uYW1lPSJMYXllciAxIj48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMjM5IDAgMjM5IDIzOSAxMTkuNSAxMTkuNSAwIDAgMjM5IDAiLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMTcxLjM3IDM5LjcyIDE4MC41MiA1OC4yOSAyMDEgNjEuMjIgMTg2LjI1IDc1LjU5IDE4OS42OCA5NS45NCAxNzEuMzcgODYuNCAxNTMuMTggOTUuOTQgMTU2LjYxIDc1LjU5IDE0MS44NiA2MS4yMiAxNjIuMzQgNTguMjkgMTcxLjM3IDM5LjcyIi8+PC9nPjwvZz48L3N2Zz4=' 
-            className={styles.adminPost}>
-                Admin's post
-            </object>}}
+                type="image/svg+xml" 
+                data='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzkgMjM5Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6cmVkO30uY2xzLTJ7ZmlsbDojZmYwO308L3N0eWxlPjwvZGVmcz48dGl0bGU+QXNzZXQgMzwvdGl0bGU+PGcgaWQ9IkxheWVyXzIiIGRhdGEtbmFtZT0iTGF5ZXIgMiI+PGcgaWQ9IkxheWVyXzEtMiIgZGF0YS1uYW1lPSJMYXllciAxIj48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMjM5IDAgMjM5IDIzOSAxMTkuNSAxMTkuNSAwIDAgMjM5IDAiLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMTcxLjM3IDM5LjcyIDE4MC41MiA1OC4yOSAyMDEgNjEuMjIgMTg2LjI1IDc1LjU5IDE4OS42OCA5NS45NCAxNzEuMzcgODYuNCAxNTMuMTggOTUuOTQgMTU2LjYxIDc1LjU5IDE0MS44NiA2MS4yMiAxNjIuMzQgNTguMjkgMTcxLjM3IDM5LjcyIi8+PC9nPjwvZz48L3N2Zz4=' 
+                className={styles.adminPost}
+            >Admin's post</object>}
             <div>
                 <img onClick = {() => redirect(profileLink)} className = {styles.avatar} src = {post.from.avatar} alt = {post.from.name + "'s avatar"}/>
                 <div >
