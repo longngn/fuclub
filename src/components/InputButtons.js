@@ -21,7 +21,7 @@ export default ({ onSend, onFileSelected, onLogOut }) => {
                 style={{ display: 'none' }}
             />
             <IconButton
-                iconClassName='fa fa-file-image-o'
+                iconClassName='fa fa-paperclip'
                 iconStyle={{ color: colors.ownedMessage }}
                 tooltip='Upload image or file'
                 touch={true}
