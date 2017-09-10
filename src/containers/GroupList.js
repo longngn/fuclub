@@ -17,7 +17,7 @@ export default class GroupList extends React.Component {
         const { groupsData, groupsOrder, onSelect, onRemove, currentGroupId } = this.props
         return (
             <div className={styles.container}>
-                <div>
+                <div className={styles.groupItems}>
                     {groupsOrder.filter(gid => gid in groupsData).map(gid => (
                         <GroupListItem
                             key={gid}
@@ -29,11 +29,6 @@ export default class GroupList extends React.Component {
                     ))}
                 </div>
                 <AddGroupButton onClick={() => this.setState({ isSelectingGroups: true })} />
-                {/* <RaisedButton 
-                    label='Thêm nhóm...'
-                    primary={true}
-                    onClick={() => this.setState({ isSelectingGroups: true })}
-                /> */}
                 <GroupSelector 
                     existedGroups={groupsOrder}
                     open={this.state.isSelectingGroups} 

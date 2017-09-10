@@ -2,5 +2,11 @@
 	flex: 0 0 250px;
 	display: flex;
 	flex-direction: column;
+}
+
+.groupItems {
+	display: flex;
+	flex-direction: column;
 	overflow-y: auto;
+	border-bottom: 1px solid #DDD;
 }
