@@ -3,8 +3,6 @@
     align-items: center;
     padding: 5px;
     padding-left: 8px;
-    position: relative;
-    z-index: -1;
 }
 
 .icon {
