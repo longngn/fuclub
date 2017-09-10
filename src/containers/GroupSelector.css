@@ -1,25 +1,6 @@
-.container {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.selectorPanel {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
 .groups {
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 auto;
     overflow-y: auto;
-}
-
-.button {
-    flex: 0 0 auto;
 }
