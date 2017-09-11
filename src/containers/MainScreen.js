@@ -1,8 +1,10 @@
 import React from 'react'
 import GroupList from './GroupList'
 import GroupScreen from './GroupScreen'
+import { arrayMove } from 'react-sortable-hoc'
 import * as db from '../services/db'
 import { updateGroupsOnBackground } from '../services/bridge'
+import groupListItemStyles from '../components/GroupListItem.css'
 
 export default class MainScreen extends React.Component {
     constructor(props) {
@@ -15,6 +17,7 @@ export default class MainScreen extends React.Component {
         this.handleSelectGroup = this.handleSelectGroup.bind(this)
         this.handleRemoveGroup = this.handleRemoveGroup.bind(this)
         this.handleAddGroups = this.handleAddGroups.bind(this)
+        this.handleSortEnd = this.handleSortEnd.bind(this)
     }
     componentDidMount() {
         this.fetchGroups(this.props.groupIds)
@@ -60,6 +63,15 @@ export default class MainScreen extends React.Component {
             }
         })
     }
+    handleSortEnd({ oldIndex, newIndex }) {
+        this.setState((prevState, props) => {
+            const newGroupsOrder = arrayMove(prevState.groupsAllIds, oldIndex, newIndex)
+            db.updateUserGroups(props.user.id, newGroupsOrder)
+            return {
+                groupsAllIds: newGroupsOrder,
+            }
+        })
+    }
     render() {
         const { groupsById, groupsAllIds, currentGroupId } = this.state
         const containerStyle = {
@@ -75,6 +87,10 @@ export default class MainScreen extends React.Component {
                     onSelect={this.handleSelectGroup}
                     onRemove={this.handleRemoveGroup}
                     onAddGroups={this.handleAddGroups}
+                    onSortEnd={this.handleSortEnd}
+                    lockAxis='y'
+                    pressDelay={200}
+                    helperClass={groupListItemStyles.sorting}
                     accessToken={this.props.accessToken}
                 />
                 {currentGroupId && 

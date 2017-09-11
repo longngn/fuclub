@@ -38,6 +38,7 @@
     "react-dom": "^15.6.1",
     "react-error-overlay": "^1.0.10",
     "react-linkify": "^0.2.1",
+    "react-sortable-hoc": "^0.6.7",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",

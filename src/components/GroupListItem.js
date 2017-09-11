@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './GroupListItem.css'
+import { SortableElement } from 'react-sortable-hoc'
 
-export default ({ group, onSelect, onRemove, isBeingSelected }) => {
+const GroupListItem = ({ group, onSelect, onRemove, isBeingSelected }) => {
     const defaultCover = "https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/Onaj08c4thr.png"
     return (
         <div 
@@ -31,3 +32,4 @@ export default ({ group, onSelect, onRemove, isBeingSelected }) => {
         </div>
     )
 }
+export default SortableElement(GroupListItem)

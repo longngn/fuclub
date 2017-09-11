@@ -2,9 +2,10 @@ import React from 'react';
 import GroupListItem from '../components/GroupListItem';
 import AddGroupButton from '../components/AddGroupButton'
 import GroupSelector from './GroupSelector'
+import { SortableContainer } from 'react-sortable-hoc'
 import styles from './GroupList.css';
 
-export default class GroupList extends React.Component {
+class GroupList extends React.Component {
     state = {
         isSelectingGroups: false
     }
@@ -18,9 +19,10 @@ export default class GroupList extends React.Component {
         return (
             <div className={styles.container}>
                 <div className={styles.groupItems}>
-                    {groupsOrder.filter(gid => gid in groupsData).map(gid => (
+                    {groupsOrder.filter(gid => gid in groupsData).map((gid, idx) => (
                         <GroupListItem
                             key={gid}
+                            index={idx}
                             group={groupsData[gid]}
                             isBeingSelected={gid === currentGroupId}
                             onSelect={onSelect}
@@ -40,3 +42,4 @@ export default class GroupList extends React.Component {
         )
     }
 }
+export default SortableContainer(GroupList)
