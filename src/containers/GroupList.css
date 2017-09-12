@@ -2,6 +2,7 @@
 	flex: 0 0 250px;
 	display: flex;
 	flex-direction: column;
+	border-right: 1px solid #AAA;	
 }
 
 .groupItems {
