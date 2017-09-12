@@ -18,13 +18,17 @@ export default class GroupSelectorCard extends React.Component {
     }
     render() {
         const { name } = this.props.group
+        let style = {}
+        if (this.state.selected) style = {
+            ...style,
+            backgroundColor: colors.sub, 
+            color: '#FFF' 
+        }
+        if (this.props.searchText !== '' && !name.toLowerCase().includes(this.props.searchText.toLowerCase())) style.display = 'none'
         return (
             <div 
                 className={styles.container} 
-                style={this.state.selected? { 
-                    backgroundColor: colors.sub, 
-                    color: '#FFF' 
-                } : {}}
+                style={style}
                 onClick={this.onClick}
             >
                 <p className={styles.groupName}>{name}</p>

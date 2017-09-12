@@ -2,13 +2,15 @@ import React from 'react'
 import GroupSelectorCard from '../components/GroupSelectorCard'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog'
+import SearchBar from 'material-ui-search-bar'
 import styles from './GroupSelector.css'
 import * as graph from '../services/graph'
 
 export default class GroupSelector extends React.Component {
     state = {
         groups: [],
-        selectedGroups: []
+        selectedGroups: [],
+        searchText: ''
     }
     constructor(props) {
         super(props)
@@ -39,13 +41,14 @@ export default class GroupSelector extends React.Component {
         this.setState({ selectedGroups: [] })
     }
     render() {
-        const { groups, selectedGroups } = this.state
+        const { groups, selectedGroups, searchText } = this.state
         return (
             <Dialog
                 open={this.props.open}
                 onRequestClose={this.props.onRequestClose}
                 title='Chọn nhóm mà bạn muốn theo dõi'
-                bodyClassName={styles.groups}
+                bodyClassName={styles.container}
+                bodyStyle={{ border: 'none', paddingBottom: 0 }}
                 autoScrollBodyContent={true}
                 actions={[
                     <FlatButton
@@ -61,14 +64,22 @@ export default class GroupSelector extends React.Component {
                     />
                 ]}
             >
-                {groups.map(e => 
-                    <GroupSelectorCard 
-                        group={e} 
-                        onSelect={this.handleSelectGroup}
-                        onDeselect={this.handleDeselectGroup}
-                        key={e.id}
-                    />
-                )}
+                <SearchBar
+                    hintText='Tìm nhóm...'
+                    style={{ flex: '0 0 auto' }}
+                    onChange={text => this.setState({ searchText: text })}
+                />
+                <div className={styles.groups}>
+                    {groups.map(e => 
+                        <GroupSelectorCard 
+                            group={e}
+                            searchText={searchText}
+                            onSelect={this.handleSelectGroup}
+                            onDeselect={this.handleDeselectGroup}
+                            key={e.id}
+                        />
+                    )}
+                </div>
             </Dialog>
         )
     }
