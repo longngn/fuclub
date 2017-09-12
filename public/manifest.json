@@ -4,8 +4,11 @@
   "description": "Một extension Chrome để quản lý các CLB của Đại học FPT trên trang New Tab.",
   "version": "0.2.0",
   "manifest_version": 2,
-  "chrome_url_overrides": {
-    "newtab": "index.html"
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_title": "FU Clubs Manager"
   },
   "permissions": [
     "cookies",
