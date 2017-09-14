@@ -29,22 +29,18 @@
     box-sizing: border-box;
     object-fit: cover;
     object-position: center; 
+    margin-right: 7px;
 }
 
 .groupName {
+    font-size: 14px;
     font-weight: bold;
-    font-size: 15px;
-    text-decoration: none;;
-    width: 170px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 5px;
+    width: 155px;
+    height: 50px;
+    line-height: 25px;
+    display:-webkit-box;
+    -webkit-box-align:center;
 }
-
 .sorting {
     background-color: #E8EAF6;
 }

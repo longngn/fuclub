@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './GroupListItem.css'
 import { SortableElement } from 'react-sortable-hoc'
+import LinesEllipsis from 'react-lines-ellipsis'
 
 const GroupListItem = ({ group, onSelect, onRemove, isBeingSelected }) => {
     const defaultCover = "https://static.xx.fbcdn.net/rsrc.php/v3/yG/r/Onaj08c4thr.png"
@@ -17,8 +18,13 @@ const GroupListItem = ({ group, onSelect, onRemove, isBeingSelected }) => {
                 alt={group.name}
             ></img>
             <div className = {styles.groupName}>
-                {group.name}
-            </div> 
+                <LinesEllipsis 
+                    text={group.name} 
+                    maxLine='2' 
+                    ellipsis='...' 
+                    trimRight 
+                />
+            </div>  
             <span 
                 className={styles.removeButton} 
                 title='Remove group'
