@@ -3,16 +3,18 @@ import MessageBubble from './MessageBubble'
 import styles from './MessageBubble.css'
 import { colors } from '../config'
 
-export const Text = ({ children, isOwned }) => isOwned?
+export const Text = ({ children, isOwned, isFile }) => isOwned?
     <MessageBubble 
         backgroundColor={colors.ownedMessage}
         color='#fff'
         isOwned={isOwned}
+        isFile={isFile}
     >{children}</MessageBubble> :
     <MessageBubble 
         backgroundColor={colors.unownedMessage}
         color='#000'
         isOwned={isOwned}
+        isFile={isFile}
     >{children}</MessageBubble>
 
 export const File = ({ isOwned, file }) => {
@@ -30,7 +32,7 @@ export const File = ({ isOwned, file }) => {
             Your browser does not support embedded videos, but you can <a href={URL}>download it</a>
         </video>            
     ); else return (
-        <Text isOwned={isOwned}>
+        <Text isOwned={isOwned} isFile={true}>
             <a href={URL}>
                 <i className='fa fa-cloud-download'></i>
                 {' '}
