@@ -16,14 +16,22 @@ export const Text = ({ children, isOwned }) => isOwned?
     >{children}</MessageBubble>
 
 export const File = ({ isOwned, file }) => {
-    if (file.type.startsWith('image')) return (
-        <a href={file.downloadURL}>
-            <img className={styles.image} src={file.downloadURL} alt={file.name}/>
+    const { type, downloadURL: URL } = file
+    if (type.startsWith('image')) return (
+        <a href={URL} target='_blank'>
+            <img className={styles.image} src={URL} alt={file.name}/>
         </a>
-    )
-    return (
+    ); else if (type.startsWith('audio')) return (
+        <audio src={URL} controls style={{ width: '500px' }}>
+            Your browser does not support embedded audios, but you can <a href={URL}>download it</a>
+        </audio>
+    ); else if (type.startsWith('video')) return (
+        <video src={URL} controls height='360px'>
+            Your browser does not support embedded videos, but you can <a href={URL}>download it</a>
+        </video>            
+    ); else return (
         <Text isOwned={isOwned}>
-            <a href={file.downloadURL}>
+            <a href={URL}>
                 <i className='fa fa-cloud-download'></i>
                 {' '}
                 {file.name}
