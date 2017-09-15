@@ -20,9 +20,8 @@ export default class GroupSelector extends React.Component {
         this.handleClose = this.handleClose.bind(this)
     }
     async componentDidMount() {
-        const { accessToken, existedGroups } = this.props
+        const { accessToken } = this.props
         let groups = await graph.getGroupsOfUser(accessToken)
-        if (existedGroups) groups = groups.filter(e => !existedGroups.includes(e.id))
         this.setState({ groups })
     }
     componentDidUpdate() {
@@ -84,7 +83,9 @@ export default class GroupSelector extends React.Component {
                     onRequestSearch={() => {}}
                 />
                 <div className={styles.groups}>
-                    {groups.map(e => 
+                    {groups
+                    .filter(e => !this.props.existedGroups.includes(e.id))
+                    .map(e => 
                         <GroupSelectorCard 
                             group={e}
                             searchText={searchText}
