@@ -17,6 +17,7 @@ export default class GroupSelector extends React.Component {
         this.handleSelectGroup = this.handleSelectGroup.bind(this)
         this.handleDeselectGroup = this.handleDeselectGroup.bind(this)
         this.handleFinishSelectingGroups = this.handleFinishSelectingGroups.bind(this)
+        this.handleClose = this.handleClose.bind(this)
     }
     async componentDidMount() {
         const { accessToken, existedGroups } = this.props
@@ -37,15 +38,21 @@ export default class GroupSelector extends React.Component {
     }
     handleFinishSelectingGroups() {
         this.props.onSelect(this.state.selectedGroups)
+        this.handleClose()
+    }
+    handleClose() {
+        this.setState({ 
+            selectedGroups: [],
+            searchText: ''
+        })
         this.props.onRequestClose()
-        this.setState({ selectedGroups: [] })
     }
     render() {
         const { groups, selectedGroups, searchText } = this.state
         return (
             <Dialog
                 open={this.props.open}
-                onRequestClose={this.props.onRequestClose}
+                onRequestClose={this.handleClose}
                 title='Chọn nhóm mà bạn muốn theo dõi'
                 bodyClassName={styles.container}
                 bodyStyle={{ border: 'none', paddingBottom: 0 }}
@@ -54,7 +61,7 @@ export default class GroupSelector extends React.Component {
                     <FlatButton
                         label='HỦY'
                         primary={true}
-                        onClick={this.props.onRequestClose} 
+                        onClick={this.handleClose} 
                     />,
                     <FlatButton 
                         label='CHỌN'
