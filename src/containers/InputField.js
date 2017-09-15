@@ -20,6 +20,10 @@ export default class InputField extends React.Component {
         super(props)
         this.upload = storage.SingleUploadThread()
     }
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.groupId !== this.props.groupId)
+            document.getElementById('input-typing-field').focus()
+    }
 
     sendMessage = () => {
         const { user, groupId } = this.props
