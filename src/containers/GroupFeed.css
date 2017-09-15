@@ -6,3 +6,18 @@
     background: #EEE;
     height: 100%;
 }
+::-webkit-scrollbar{
+    height:10px;
+    width:7px;
+    border-radius: 6px;
+    background: transparent;
+        transition: all 0.3s ease;
+}
+::-webkit-scrollbar:hover{
+    background: #c6c7ca;
+    cursor: pointer;
+}
+::-webkit-scrollbar-thumb{
+    background:#777779;
+    border-radius: 6px;
+} 
