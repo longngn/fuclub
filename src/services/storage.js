@@ -12,14 +12,15 @@ export const SingleUploadThread = () => {
     return {
         isUploading: false,
 
-        upFile(file) {
+        upFile(file, userId, groupId) {
             return new Promise((resolve, reject) => {
                 const uniqueIdForFileName = cuid()
-                const fileRef = storageRef.child(`app/${uniqueIdForFileName}-${file.name}`)
+                const fileRef = storageRef.child(`app/${userId}/${groupId}/${uniqueIdForFileName}-${file.name}`)
                 uploadTask = fileRef.put(file)
                 this.isUploading = true
 
-                uploadTask.on('state_changed', snapshot => {
+                uploadTask.on('state_changed', 
+                snapshot => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                     progressHandler(progress)
                 }, 
@@ -27,6 +28,7 @@ export const SingleUploadThread = () => {
                 () => {
                     this.isUploading = false
                     progressHandler(null)
+                    fileRef.updateMetadata({ contentDisposition: `attachment; filename=${file.name}` })
                     resolve(uploadTask.snapshot.downloadURL)
                 })
             })

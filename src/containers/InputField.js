@@ -48,8 +48,8 @@ export default class InputField extends React.Component {
             return
         }
         this.upload.onProgress(progress => this.setState({ uploadingProgress: progress }))
-        const downloadURL = await this.upload.upFile(file)
         const { user, groupId } = this.props
+        const downloadURL = await this.upload.upFile(file, user.id, groupId)
         const messageObject = db.makeMessage(
             db.messageTypes.FILE,
             {
@@ -86,7 +86,7 @@ export default class InputField extends React.Component {
                     <Dialog
                         actions={<FlatButton 
                             label='Ok' 
-                            onTouchTap={() => this.setState({ alertFileIsTooLarge: false })} 
+                            onClick={() => this.setState({ alertFileIsTooLarge: false })} 
                             primary={true}
                         />}
                         open={this.state.alertFileIsTooLarge}
@@ -97,7 +97,7 @@ export default class InputField extends React.Component {
                     <Dialog
                         actions={<FlatButton 
                             label='Ok' 
-                            onTouchTap={() => this.setState({ alertAnotherFileIsBeingUploaded: false })} 
+                            onClick={() => this.setState({ alertAnotherFileIsBeingUploaded: false })} 
                             primary={true}
                         />}
                         open={this.state.alertAnotherFileIsBeingUploaded}

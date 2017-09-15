@@ -75,6 +75,7 @@ export default class GroupSelector extends React.Component {
                     hintText='Tìm nhóm...'
                     style={{ flex: '0 0 auto' }}
                     onChange={text => this.setState({ searchText: text })}
+                    onRequestSearch={() => {}}
                 />
                 <div className={styles.groups}>
                     {groups.map(e => 
