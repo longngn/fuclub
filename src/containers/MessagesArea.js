@@ -1,12 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Message from '../components/Message'
+import CircularProgress from 'material-ui/CircularProgress'
 import styles from './MessagesArea.css'
 import * as db from '../services/db';
 
 export default class MessagesArea extends React.Component {
     state = {
-        messages: []
+        messages: [],
+        loading: true
     }
     dbListener = null
     componentDidMount() {
@@ -19,19 +21,19 @@ export default class MessagesArea extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.groupId !== this.props.groupId) {
             db.offMessagesDataChange(this.props.groupId, this.dbListener)
-            this.setState({ messages: [] })
+            this.setState({ messages: [], loading: true })
             this.dbListener = this.listenToMessagesData(nextProps.groupId)
         }
     }
 
     listenToMessagesData(groupId) {
         return db.onMessagesDataChange(groupId, newMessages => {
-            this.setState({ messages: newMessages })
+            this.setState({ messages: newMessages, loading: false })
         })
     }
     scrollToBottom = () => {
         const element = ReactDOM.findDOMNode(this.bottomMostNodeToScrollInto)
-        element.scrollIntoView()
+        if (element) element.scrollIntoView()
     }
     renderMessages = (message) => {
         switch (message.type) {
@@ -51,8 +53,19 @@ export default class MessagesArea extends React.Component {
     render() {
         return (
             <div className={styles.container}>
-                {this.state.messages.map(this.renderMessages)}
-                <div ref={node => this.bottomMostNodeToScrollInto = node}></div>
+                {this.state.loading? 
+                <div className={styles.loadingContainer}>
+                    <CircularProgress size={60} thickness={5}/>
+                </div> :
+                this.state.messages.length === 0?
+                    <div style={{ flex: '1 1 auto' }}>
+                        <p className={styles.noMessageNotif}>Hãy là người đầu tiên bắt đầu cuộc trò chuyện.</p>
+                    </div> :
+                    <div style={{ flex: '1 1 auto' }}>
+                        {this.state.messages.map(this.renderMessages)}
+                        <div ref={node => this.bottomMostNodeToScrollInto = node}></div>
+                    </div>
+                }
             </div>
         )
     }

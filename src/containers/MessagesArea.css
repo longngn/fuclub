@@ -2,4 +2,18 @@
     flex: 1 1 auto;
     padding: 10px;
     overflow-y: auto;
+    display: flex;
+}
+
+.loadingContainer {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noMessageNotif {
+    text-align: center;
+    font-size: .8em;
+    color: #777;
 }
