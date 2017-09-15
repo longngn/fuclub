@@ -52,21 +52,18 @@ export default class MessagesArea extends React.Component {
     }
     render() {
         return (
-            <div className={styles.container}>
-                {this.state.loading? 
-                <div className={styles.loadingContainer}>
-                    <CircularProgress size={60} thickness={5}/>
+            this.state.loading?
+            <div className={styles.loadingContainer}>
+                <CircularProgress size={60} thickness={5}/>
+            </div> :
+            this.state.messages.length === 0?
+                <div className={styles.messageContainer}>
+                    <p className={styles.noMessageNotif}>Hãy là người đầu tiên bắt đầu cuộc trò chuyện.</p>
                 </div> :
-                this.state.messages.length === 0?
-                    <div style={{ flex: '1 1 auto' }}>
-                        <p className={styles.noMessageNotif}>Hãy là người đầu tiên bắt đầu cuộc trò chuyện.</p>
-                    </div> :
-                    <div style={{ flex: '1 1 auto' }}>
-                        {this.state.messages.map(this.renderMessages)}
-                        <div ref={node => this.bottomMostNodeToScrollInto = node}></div>
-                    </div>
-                }
-            </div>
+                <div className={styles.messageContainer}>
+                    {this.state.messages.map(this.renderMessages)}
+                    <div ref={node => this.bottomMostNodeToScrollInto = node}></div>
+                </div>
         )
     }
 }

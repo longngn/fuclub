@@ -1,8 +1,7 @@
-.container {
+.messageContainer {
     flex: 1 1 auto;
     padding: 10px;
     overflow-y: auto;
-    display: flex;
 }
 
 .loadingContainer {
