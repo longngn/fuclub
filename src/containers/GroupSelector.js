@@ -25,6 +25,12 @@ export default class GroupSelector extends React.Component {
         if (existedGroups) groups = groups.filter(e => !existedGroups.includes(e.id))
         this.setState({ groups })
     }
+    componentDidUpdate() {
+        if (this.props.open) setTimeout(() => {
+            const inputElement = document.querySelector('input[id^="undefined-Tmnhm-undefined-"]')
+            if (inputElement) inputElement.focus()
+        }, 100)
+    }
     handleSelectGroup(id) {
         if (this.state.selectedGroups.includes(id)) return
         this.setState(prevState => 
