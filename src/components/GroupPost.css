@@ -31,9 +31,7 @@ object.adminPost {
 .post {
     white-space: pre-wrap;
     font-size: 14px;
-    -ms-word-break: break-all; 
-    word-break: break-all; 
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 
 a#name {
