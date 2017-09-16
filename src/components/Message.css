@@ -1,6 +1,7 @@
 .ownedContainer, .unownedContainer {
     display: flex;
     align-items: flex-end;
+    margin: .5em 0;
 }
 
 .ownedContainer {

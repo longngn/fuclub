@@ -1,6 +1,5 @@
 .ownedBubble, .unownedBubble {
     padding: 0.6em;
-    margin: 0.25em;
 }
 
 .unownedBubble {
@@ -19,8 +18,8 @@
 }
 
 .image {
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 400px;
+    max-height: 600px;
 }
 
 @media (max-width: 700px) {

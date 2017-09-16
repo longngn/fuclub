@@ -28,7 +28,7 @@ export const File = ({ isOwned, file }) => {
             Your browser does not support embedded audios, but you can <a href={URL}>download it</a>
         </audio>
     ); else if (type.startsWith('video')) return (
-        <video src={URL} controls height='360px'>
+        <video src={URL} controls height='240px'>
             Your browser does not support embedded videos, but you can <a href={URL}>download it</a>
         </video>            
     ); else return (

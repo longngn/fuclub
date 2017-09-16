@@ -6,6 +6,11 @@
     border-radius: 3px;
     position: relative;
 }
+
+.container a {
+    word-break: break-all;
+}
+
 .avatar {
     float:left;
     height: 50px;
