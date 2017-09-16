@@ -1,7 +1,7 @@
 {
   "name": "FU Clubs Manager",
   "short_name": "FUCM",
-  "description": "Một tiện ích Chrome để quản lý các CLB của Đại học FPT hoạt động trên nhóm Facebook.",
+  "description": "Một tiện ích Chrome để quản lý các group Facebook của các CLB thuộc Đại học FPT",
   "version": "0.3.0",
   "manifest_version": 2,
   "background": {
