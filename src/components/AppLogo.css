@@ -1,0 +1,14 @@
+.container {
+    height: 60px;
+    background-color: #2C3E50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.label {
+    color: white;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1.2em;
+}

@@ -1,12 +1,40 @@
-.container {
+.verticalContainer {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerBar {
+    flex: 0 0 auto;
+    height: 59px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    padding-right: .5em;
+}
+
+.horizontalContainer {
     flex: 1 1 auto;
     display: flex;
 }
 
-.chatbox {
-    flex: 7 7 auto;
+.groupName {
+    flex: 1 1 auto;
+    text-align: center;
+    padding-left: 9em;
 }
 
-.feed {
-    flex: 3 3 auto;
+.linkToFb {
+    text-decoration: none;
+    flex: 0 0 auto;
+    color: #3F51B5;
+    display: flex;
+    align-items: center;
+    font-size: .9em;
+}
+
+.arrowIcon {
+    margin-left: .2em;
+    max-width: 1em;
 }

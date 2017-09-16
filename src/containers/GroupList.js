@@ -1,6 +1,7 @@
 import React from 'react';
 import GroupListItem from '../components/GroupListItem';
 import AddGroupButton from '../components/AddGroupButton'
+import AppLogo from '../components/AppLogo'
 import GroupSelector from './GroupSelector'
 import { SortableContainer } from 'react-sortable-hoc'
 import styles from './GroupList.css';
@@ -18,6 +19,7 @@ class GroupList extends React.Component {
         const { groupsData, groupsOrder, onSelect, onRemove, currentGroupId } = this.props
         return (
             <div className={styles.container}>
+                <AppLogo />
                 <div className={styles.groupItems}>
                     {groupsOrder.filter(gid => gid in groupsData).map((gid, idx) => (
                         <GroupListItem

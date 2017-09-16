@@ -4,7 +4,6 @@
     flex-direction: column;
     overflow-y: auto;
     background: #EEE;
-    height: 100%;
 }
 ::-webkit-scrollbar{
     height:10px;

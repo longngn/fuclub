@@ -28,6 +28,7 @@ export default class MainScreen extends React.Component {
         groupIds.forEach(id => db.onGroupChange(id, newGroupData => {
             if (newGroupData) {
                 newGroupData.feed = JSON.parse(newGroupData.feed)
+                if (!newGroupData.admins) newGroupData.admins = []
                 this.setState(prevState => ({
                     currentGroupId: !prevState.currentGroupId ? id : prevState.currentGroupId,
                     groupsById: {
