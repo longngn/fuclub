@@ -73,7 +73,7 @@ const checkToken = async () => {
     const uid = await getUid()
     const cookies = parseDocumentCookie(document.cookie)
     const validToken = cookies.accessToken? await isTokenValid(cookies.accessToken) : null
-    if (!cookies.uid || uid != cookies.uid || !validToken) {
+    if (!cookies.uid || uid !== cookies.uid || !validToken) {
         const token = await getAccessToken()
         cookies.uid = uid
         cookies.accessToken = token
