@@ -3,17 +3,11 @@ import * as graph from './graph'
 
 export const updateGroupsOnBackground = (accessToken, groupIds) => {
     const getAllGroupData = async (id, groupNode) => {
-        let groupPosts = await graph.getPostsFromGroup(accessToken, id)
-        for(let i = 0; i < groupPosts.length; i++) {
-            groupPosts[i] = await graph.getPostInfo(accessToken, groupPosts[i].id)
-        }
-        const groupMembers = await graph.getGroupMembers(accessToken, id)
-        const groupAdmins = await graph.getGroupAdmins(accessToken, id)
+        const groupData = await graph.getGroupData(accessToken, id)
 
         const group = groupNode
-        group.feed = JSON.stringify(groupPosts)
-        group.members = groupMembers.map(e => e.id)
-        group.admins = groupAdmins.map(e => e.id)
+        group.feed = JSON.stringify(groupData.feed)
+        group.admins = groupData.admins.map(e => e.id)
         return group
     }
     groupIds.forEach(async id => {
