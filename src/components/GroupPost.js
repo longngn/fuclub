@@ -42,8 +42,10 @@ export default ({ post, admins}) =>{
                     )}
                 </div>}
             </div>
-            <div className={styles.attachment}>
-                <AttachmentComponent />
-            </div>
+            {post.type !== 'status' && 
+                <div className={styles.attachment}>
+                    <AttachmentComponent />
+                </div>
+            }
         </div>
 )}
