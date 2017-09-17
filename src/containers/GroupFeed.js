@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import GroupPost from '../components/GroupPost'
 import styles from './GroupFeed.css'
+import orderBy from 'lodash/orderBy'
 
 export default class GroupFeed extends React.Component {
     componentWillReceiveProps(nextProps) {
@@ -14,10 +15,11 @@ export default class GroupFeed extends React.Component {
     }
     render() {
         const { group } = this.props
+        const postsSortedByTime = orderBy(group.feed, 'created_time', 'desc')
         return (
             <div className={styles.container}>
                 <div ref={node => this.topMostNodeToScrollInto = node}></div>
-                {group.feed.map(post => 
+                {postsSortedByTime.map(post => 
                     <GroupPost key={post.id} post={post} admins={group.admins} />
                 )}
             </div>
