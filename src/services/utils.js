@@ -20,3 +20,21 @@ export const getDateInVietnamese = (dateString) => {
     const minute = date.getMinutes()
     return `${day} Tháng ${month} lúc ${hour}:${minute}`
 }
+
+export const extractPhotosFromPost = (postJson) => {
+    const getNecessaryPhotoInfo = (photoJson) => {
+        if (photoJson.type !== 'photo') return {}
+        const photo = photoJson.media.image
+        photo.url = photoJson.url
+        return photo
+    }
+    const photos = []
+    const data = postJson.attachments.data
+    data.forEach(attachment => {
+        if (attachment.type === 'photo') photos.push(getNecessaryPhotoInfo(attachment))
+        else if (attachment.type === 'album') attachment.subattachments.data.forEach(subattachment => {
+            if (subattachment.type === 'photo') photos.push(getNecessaryPhotoInfo(subattachment))
+        })
+    })
+    return photos
+}

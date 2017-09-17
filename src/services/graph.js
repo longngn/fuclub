@@ -33,7 +33,7 @@ export const getGroupInfo = async (token, id) => {
 }
 export const getGroupData = async(token, groupId) => {
     const json = await node(token, `${groupId}`, {
-        fields: 'admins.limit(9999),feed.limit(50){link,message,created_time,from{name,picture.type(large).redirect(false)}}'
+        fields: 'admins.limit(9999),feed.limit(50){attachments,type,message,created_time,from{name,picture.type(large).redirect(false)}}'
     })
     const group = {}
     group.admins = json.admins? json.admins.data : []

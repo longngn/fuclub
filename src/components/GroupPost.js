@@ -1,4 +1,5 @@
 import React from 'react'
+import PostPhotos from './PostPhotos.js'
 import styles from './GroupPost.css'
 import Linkify from 'react-linkify'
 import * as utils from '../services/utils'
@@ -7,9 +8,11 @@ export default ({ post, admins}) =>{
     const postLink = "https://facebook.com/" + post.id
     const profileLink = "https://facebook.com/" + post.from.id;
 
-    const redirect = (address) => {    
-        window.open(address);
-    }
+    const redirect = (address) => { window.open(address) }
+    let AttachmentComponent
+    if (post.type === 'photo') AttachmentComponent = () => <PostPhotos photos={utils.extractPhotosFromPost(post)} />
+    else AttachmentComponent = () => <div></div>
+
     return (
         post.message != null &&
         <div className = {styles.container}>
@@ -38,6 +41,9 @@ export default ({ post, admins}) =>{
                         </div>
                     )}
                 </div>}
+            </div>
+            <div className={styles.attachment}>
+                <AttachmentComponent />
             </div>
         </div>
 )}
