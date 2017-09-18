@@ -1,4 +1,5 @@
 .container {
+    flex: 0 0 auto;
     height: 60px;
     background-color: #2C3E50;
     display: flex;
