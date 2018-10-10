@@ -1,4 +1,4 @@
-const graphApiVersion = 'v2.10'
+const graphApiVersion = 'v2.11'
 
 const graph = async (token, resource, params = {}, method = 'GET') => {
     let url = `https://graph.facebook.com/${graphApiVersion}/${resource}?access_token=${token}`
@@ -15,7 +15,7 @@ const edge = async (...args) => {
     return json.data
 }
 
-export const getGroupsOfUser = (token) => edge(token, 'me/groups', { limit: 9999 })
+export const getGroupsOfUser = token => edge(token, 'me/groups', { limit: 9999 })
 export const getCommentsFromPost = (token, postId) => edge(token, `${postId}/comments`, { limit: 9999 })
 export const postCommentToPost = (token, postId, message) => edge(token, `${postId}/comments`, { message }, 'POST')
 export const getSelfUser = async (token) => {
