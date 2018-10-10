@@ -4,7 +4,7 @@ import firebaseApp from './firebase'
 const database = firebaseApp.database()
 const usersRef = database.ref('users')
 const groupsRef = database.ref('groups')
-const getMessagesRef = (groupId) => database.ref('messages').child(groupId)
+const getMessagesRef = groupId => database.ref('messages').child(groupId)
 
 export const messageTypes = {
     TEXT: 'TEXT',
@@ -55,7 +55,7 @@ export const getUser = async (uid) => {
     const snapshot = await usersRef.child(uid).once('value')
     return snapshot.val()
 }
-export const updateUser = (user) => {
+export const updateUser = user => {
     usersRef.update({
         [user.id]: user
     })
@@ -71,7 +71,7 @@ export const getGroup = async (id) => {
     const snapshot = await groupsRef.child(id).once('value')
     return snapshot.val()
 }
-export const updateGroup = (group) => {
+export const updateGroup = group => {
     groupsRef.update({
         [group.id]: group
     })
